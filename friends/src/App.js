@@ -1,7 +1,8 @@
 import React from 'react'
-import { Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // Component Import
+import Login from './components/Login'
 
 //Styles Import
 import './App.css';
@@ -16,18 +17,13 @@ function App() {
   return (
     <Router>
       <div>
-         <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link onClick={logout}>Logout</Link>
-          </li>
-          <li>
-            <Link to="/protected">Friends</Link>
-          </li>
-        </ul>
+        <Link to="/login">Login</Link>
+        <Link onClick={logout}>Logout</Link>
+        <Link to="/protected">Friends</Link>
       </div>
+      <Switch>
+        <Route component={Login} />
+      </Switch>
     </Router>
   );
 }
