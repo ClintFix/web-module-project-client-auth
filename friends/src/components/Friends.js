@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import AddFriend from './AddFriend'
 
 const Friends = () => {
     const [ friendsList, setFriendsList ] = useState([]);
@@ -33,13 +34,16 @@ const Friends = () => {
         <div>
             { 
                 isLoading ? <div>Loading Friends...</div> :
-                friendsList.map((friend)=> {
-                    return (
-                        <div>
-                            <div>{`${friend.name} · ${friend.age} · ${friend.email}`}</div>
-                        </div>
-                    )
-                })
+                <div>
+                {
+                    friendsList.map((friend)=> {
+                        return (
+                            <div key={friend.id}>{`${friend.name} · ${friend.age} · ${friend.email}`}</div>
+                        )
+                    })
+                }
+                    <AddFriend fetchFriends={fetchFriends}/>
+                </div>
             }
         </div>
     )

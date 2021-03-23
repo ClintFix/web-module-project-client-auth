@@ -14,13 +14,13 @@ function App() {
     //1. do a request to our server to delete the token
     //2. remove our local token
     //3. redirect to login page
+
   }
 
   return (
     <Router>
       <div>
         <Link to="/login">Login</Link>
-        <Link onClick={logout}>Logout</Link>
         <Link to="/Friends">Friends</Link>
       </div>
       <Switch>
