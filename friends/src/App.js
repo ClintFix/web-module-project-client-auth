@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // Component Import
 import Login from './components/Login'
+import Friends from './components/Friends'
 
 //Styles Import
 import './App.css';
@@ -19,9 +20,11 @@ function App() {
       <div>
         <Link to="/login">Login</Link>
         <Link onClick={logout}>Logout</Link>
-        <Link to="/protected">Friends</Link>
+        <Link to="/Friends">Friends</Link>
       </div>
       <Switch>
+        <Route exact path='/friends' component={Friends} />
+        <Route path='/login' component={Login} />
         <Route component={Login} />
       </Switch>
     </Router>
