@@ -10,6 +10,8 @@ const initialFormValues = {
 
 const Login = () => {
     const [formValues, setFormValues] = useState(initialFormValues)
+    const [isLoading, setIsLoading] = useState(false)
+
     const history = useHistory()
 
     const handleChange = e => {
@@ -22,15 +24,17 @@ const Login = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        
+        setIsLoading(true)
+
         axios
             .post('http://localhost:5000/api/login', formValues)
             .then(res => {
                 localStorage.setItem('token', res.data.payload)
-                //TODO: route to friends
+                setIsLoading(false)
                 history.push('/Friends')
             })
             .catch(err => {
+                setIsLoading(false)
                 console.log(err.response)
             })
 
@@ -44,6 +48,9 @@ const Login = () => {
                 <input name={'password'} type='password' placeholder='Password' value={formValues.password} onChange={handleChange}/>
                 <button>Login</button>
             </form>
+            {
+                isLoading ? <div>Loading...</div> : null
+            }
         </div>
     )
 }
